@@ -20,14 +20,14 @@
 }
 
 #ar-button {
-    background-image: url(./ic_view_in_ar_new_googblue_48dp.png);
+    background-image: url(./assets/ic_view_in_ar_new_googblue_48dp.png);
     background-repeat: no-repeat;
     background-size: 20px 20px;
     background-position: 12px 50%;
     background-color: #fff;
     position: absolute;
-    top: 80%;
-    left: 80%;
+    top: 83%;
+    left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
     bottom: -100px;
@@ -62,17 +62,23 @@ model-viewer {
     /* margin-bottom: 30%; */
 }
 
-#variantdiv {
+/* #variantdiv {
     position: absolute;
     left: 50%;
-}
+} */
 
 #controls {
     position: absolute;
-    bottom: 90px;
-    left: 0px;
+    top: 75%;
+    /* bottom: 85px; */
+    left: 115px;
+    
     max-width: unset;
     transform: unset;
+    /* width: 100%; */
+    /* display: flex; */
+    /* margin: 0 auto; */
+    justify-content: center;
 }
 
 .controls {
@@ -104,8 +110,8 @@ model-viewer {
     color: rgba(0, 0, 0, 0.8);
     display: block;
     font-family: Futura, Helvetica Neue, sans-serif;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 400;
     max-width: 128px;
     overflow-wrap: break-word;
     padding: 0.5em 1em;
