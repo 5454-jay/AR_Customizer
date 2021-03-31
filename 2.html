@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> </script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> </script>
+
+
+</head>
+
+<body>
+  <!-- model change on ar mode  -->
+                                                        <model-viewer id="dimension-demo" 
+                                                                          ar ar-modes="webxr" 
+                                                                          ar-scale="fixed" 
+                                                                          camera-orbit="-30deg auto auto" 
+                                                                          max-camera-orbit="auto 100deg auto" 
+                                                                          shadow-intensity="1" 
+                                                                          camera-controls 
+                                                                          src="./SheenChair/glTF-Binary/SheenChair.glb" alt="A 3D model of an armchair.">
+                                                                            <div id="controls" class="dim">
+                                                                              <label for="src">Product:</label>
+                                                                              <select id="src">
+                                                                                <option value="./SheenChair/glTF-Binary/SheenChair.glb">Sheen Chair</option>
+                                                                                <option value="./table football_glbt.glb">Football Table</option>
+                                                                                 <option value="../../assets/ShopifyModels/GeoPlanter.glb">Cactus</option> 
+                                                                              </select><br>
+                                                                          
+                                                                              <label for="show-dimensions">Show Dimensions:</label>
+                                                                              <input id="show-dimensions" type="checkbox" checked="false">
+                                                                            </div>
+                                                          </model-viewer>
+  <!--  -------------------------------------------------------------------------------------------------->
+  <!-- varient change in ar mode -->
+                                                  <!-- <model-viewer id="chair"
+                                                            ar ar-modes="webxr" 
+                                                            ar-scale="fixed" 
+                                                            camera-orbit="-30deg auto auto" 
+                                                            max-camera-orbit="auto 100deg auto" 
+                                                            shadow-intensity="1" 
+                                                            camera-controls 
+                                                            src="./SheenChair/glTF-Binary/SheenChair.glb" alt="A 3D model of an armchair.">
+
+                                                              <div id="controls" class="dim">
+                                                                  <div>Variant: <select id="variant"></select></div>
+                                                                </div>
+                                                    </model-viewer> -->
+
+  <!-- color change in ar mode -->
+
+  <model-viewer id="color" 
+  camera-controls 
+  ar ar-modes="webxr" 
+  unstable-webxr 
+  shadow-intensity="1" 
+  interaction-prompt="none"
+    src="./table football_glbt.glb" alt="A 3D model of an astronaut" >
+    <div id="controls" class="dim">
+      <div>Materials: <select id="materials"></select></div>
+    </div>
+    <div class="controls" ,="" id="color-controls">
+      <button type="button" class="btn btn-success btn-circle btn-sm" data-color="0,1,0,1">Green</button>
+      <button type="button" class="btn btn-primary btn-circle btn-sm" data-color="0,0,1,1">Blue</button>
+      <button type="button" class="btn btn-danger btn-circle btn-sm"  data-color="1,0,0,1">Red</button>
+      <button type="button" class="btn btn-warning btn-circle btn-sm" data-color="1,1,0,1">Yellow</button>
+    </div>
+
+  </model-viewer>
+
+  <!-- scripts -->
+  <script type="module">
+
+    // model change on ar mode 
+                                                const modelViewer = document.querySelector('#dimension-demo');
+                                              
+                                                modelViewer.querySelector('#src').addEventListener('input', (event) => {
+                                                  modelViewer.src = event.target.value;
+                                                });
+
+
+
+  // varient change in ar mode 
+                                                    // const modelViewerVariants = document.querySelector("model-viewer#chair");
+                                                    //   const select = document.querySelector('#variant');
+                                                      
+                                                    //   modelViewerVariants.addEventListener('load', () => {
+                                                    //     const names = modelViewerVariants.availableVariants;
+                                                    //     console.log("variantName ::",names);
+                                                    //     for (const name of names) {
+                                                    //       const option = document.createElement('option');
+                                                    //       option.value = name;
+                                                    //       option.textContent = name;
+                                                    //       select.appendChild(option);
+                                                    //     }
+                                                    //   });
+                                                      
+                                                    //   select.addEventListener('input', (event) => {
+                                                    //     modelViewerVariants.variantName = event.target.value;
+                                                    //   });
+// color change in ar mode
+
+const modelViewerColor = document.querySelector("model-viewer#color");
+const sel = document.querySelector('#materials');
+var matnames=[];
+var index=0;
+modelViewerColor.addEventListener('load', () => {
+          matnames = modelViewerColor.model.materials;
+          const colorString = event.target.dataset.color;
+          // console.log("materialsName :",matnames);
+          for (const obj of matnames) {
+            const option = document.createElement('option');
+            option.value = obj.name;
+            option.id =obj.name;
+            option.textContent = obj.name;
+            sel.appendChild(option);
+          }
+        });
+
+        sel.addEventListener('input', (event) => {
+          // modelViewerColor.matName = event.target.value;
+          let value = event.target.value;
+          console.log(value);
+          index = event.target.selectedIndex;
+          // material = modelViewerColor.model.materials;
+          console.log(index);
+      });
+
+                      // const modelViewerColor = document.querySelector("model-viewer#color");
+                      document.querySelector('#color-controls').addEventListener('click', (event) => {
+                        const colorString = event.target.dataset.color;
+                      
+                        if (!colorString) {
+                          return;
+                        }
+                        // change 
+                        console.log("model ::",modelViewerColor.model.materials[1])
+                        //change done 
+                        const color = colorString.split(',')
+                          .map(numberString => parseFloat(numberString));
+                        
+                        console.log('Changing color to: ', color);
+                        const material = modelViewerColor.model.materials[index];
+                        // console.log("matdem",modelViewerColor.model.matnames);
+                        material.pbrMetallicRoughness.setBaseColorFactor(color);
+                        
+                      });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type = "typescript">
+        stateChanged(state: State) {
+            this.materials = getEditsMaterials(state);
+            this.originalMaterials = getOrigEdits(state).materials;
+        
+            if (this.selectedMaterialId !== undefined) {
+              const id = this.selectedMaterialId;
+              if (id < 0 || id >= this.materials.length) {
+                this.selectedMaterialId = 0;
+              }
+            }
+        
+            if (this.texturesById !== getEditsTextures(state)) {
+              this.texturesById = getEditsTextures(state);
+              this.safeTextureUrlsDirty = true;
+            }
+        
+            // If a new model is loaded, don't interpolate material
+            const gltfUrl = getGltfUrl(state);
+            if (gltfUrl !== undefined && this.currentGltfUrl !== getGltfUrl(state)) {
+              this.isNewModel = true;
+              this.currentGltfUrl = gltfUrl;
+            }
+          }
+    </script>
+    <script>
+        stateChanged(state, State);{
+    this.materials = getEditsMaterials(state);
+    this.originalMaterials = getOrigEdits(state).materials;
+    if (this.selectedMaterialId !== undefined) {
+        var id = this.selectedMaterialId;
+        if (id < 0 || id >= this.materials.length) {
+            this.selectedMaterialId = 0;
+        }
+    }
+    if (this.texturesById !== getEditsTextures(state)) {
+        this.texturesById = getEditsTextures(state);
+        this.safeTextureUrlsDirty = true;
+    }
+    // If a new model is loaded, don't interpolate material
+    var gltfUrl = getGltfUrl(state);
+    if (gltfUrl !== undefined && this.currentGltfUrl !== getGltfUrl(state)) {
+        this.isNewModel = true;
+        this.currentGltfUrl = gltfUrl;
+    }
+}
+
+    </script>
+</body>
+</html>

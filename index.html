@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Texture</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+</head>
+
+<body>
+    <model-viewer id="chair" 
+    camera-controls src="./SheenChair/glTF-Binary/SheenChair.glb" 
+    ar ar-modes="scene-viewer webxr" 
+    unstable-webxr ar-scale="auto" alt="A 3D model of a chair">
+        <div id="controls" class="dim">
+            <div>
+                <h2>Variant: <select id="variant"></select></h2>
+            </div>
+        </div>
+
+        <button slot="ar-button" id="ar-button"> View in your space </button>
+        <div id="error" class="hide"> AR is not supported on this device </div>
+    </model-viewer>
+
+    <!-- <model-viewer
+    id="model-viewer" 
+    src="./SheenChair/glTF-Binary/SheenChair.glb"
+    ios-src="./human_model.usdz"
+    ar
+    unstable-webxr
+    ar-scale="auto" 
+    camera-controls  >
+      <button slot="ar-button" id="ar-button">
+        View in your space
+      </button>
+    <div id="error" class="hide">AR is not supported on this device</div>
+    </model-viewer> -->
+
+    <script>
+        const modelViewerVariants = document.querySelector("model-viewer#chair");
+        const select = document.querySelector('#variant');
+
+        modelViewerVariants.addEventListener('load', () => {
+            const names = modelViewerVariants.availableVariants;
+            for (const name of names) {
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = name;
+                select.appendChild(option);
+            }
+        });
+
+        select.addEventListener('input', (event) => {
+            modelViewerVariants.variantName = event.target.value;
+        });
+    </script>
+
+
+</body>
+
+</html>
