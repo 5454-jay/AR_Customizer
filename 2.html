@@ -22,6 +22,7 @@
 </head>
 
 <body>
+  <div id="card">
   <!-- model change on ar mode  -->
                                                         <!-- <model-viewer id="dimension-demo" 
                                                                           ar ar-modes="webxr" 
@@ -74,11 +75,12 @@
     src="./Models/nissan_car/scene.gltf" 
     ios-src="./Models/nissan_car.usdz"
     unstable-webxr 
+    skybox-image="https://www.viewar.com/webar-demo/assets/skybox-2_2k.jpg"
     alt="A 3D model of an astronaut" >
     <!-- <button >Reset </button> -->
     <!-- <button onClick="window.location.href=window.location.href">Refresh Page</button> -->
     <div onClick="window.location.reload();" id="reset-button" class="reset-button">
-      <button type="button" class="btn btn-success btn-circle btn-sm"> Reset </button>
+      <!-- <button type="button" class="btn btn-success btn-circle btn-sm"> Reset </button> -->
     </div>
     <div id="controls" class="dim">
       <div>Materials: <select id="materials"></select></div>
@@ -90,10 +92,23 @@
       <button type="button" class="btn btn-warning btn-circle btn-sm" data-color="1,1,0,1">Yellow</button>
       
     </div>
-    <button slot="ar-button" id="ar-button"> View in your space </button>
+    <button slot="ar-button" id="ar-button"></button>
     <div id="error" class="hide"> AR is not supported on this device </div>
   </model-viewer>
 
+  <section class="attribution">
+    <span>
+      <h5>Change material base color in AR-Mode</h5>
+      <span></span>
+    </span>
+    <!-- <a class="cc" href="https://creativecommons.org/licenses/by/2.0/" target="_blank">
+      <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg">
+      <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg">
+    </a> -->
+  </section>
+
+
+</div>
   <!-- scripts -->
   <script type="module">
 

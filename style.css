@@ -23,15 +23,15 @@
     background-image: url(./assets/ic_view_in_ar_new_googblue_48dp.png);
     background-repeat: no-repeat;
     background-size: 20px 20px;
-    background-position: 12px 50%;
+    background-position: 50%;
     background-color: #fff;
     position: absolute;
     top: 83%;
-    left: 50%;
+    left: 90%;
     transform: translateX(-50%);
     white-space: nowrap;
     bottom: -100px;
-    padding: 0px 16px 0px 40px;
+    padding: 0px 0px 0px 35px;
     font-family: Roboto Regular, Helvetica Neue, sans-serif;
     font-size: 14px;
     color: #4285f4;
@@ -53,15 +53,40 @@
     outline: 1px solid #4285f4;
 }
 
-model-viewer {
+/* model-viewer {
     width: 400px;
     height: 550px;
-    /* margin-top: 30%; */
     margin-left: auto;
     margin-right: auto;
-    /* margin-bottom: 30%; */
+    
+} */
+#card {
+    margin: 3em auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  body {
+ 
+    padding: 1em;
+    /* font-family: Google Sans, Noto, Roboto, Helvetica Neue, sans-serif; */
+  /*   color: #244376; */
+  }
+model-viewer {
+  width: 100%;
+  height: 400px;
+  background-color: rgb(78, 78, 78);
+  --poster-color: #ffffff00;
 }
-
+.attribution {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1em;
+  }
 /* #variantdiv {
     position: absolute;
     left: 50%;
@@ -71,20 +96,20 @@ model-viewer {
     position: absolute;
     top: 75%;
     /* bottom: 85px; */
-    left: 115px;
+    left: 100px;
     
     max-width: unset;
     transform: unset;
     /* width: 100%; */
-    /* display: flex; */
-    /* margin: 0 auto; */
+    display: flex;
+    margin: 0 auto;
     justify-content: center;
 }
+
 
 .controls {
     position: absolute;
     bottom: 20px;
-    /* left: 50%; */
     max-width: unset;
     transform: unset;
     width: 100%;
