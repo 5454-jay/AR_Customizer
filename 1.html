@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="./style.css"/>
 </head>
 <body>
-  <model-viewer id="color" camera-controls interaction-prompt="none" 
+  <model-viewer id="color" ar   unstable-webxr camera-controls interaction-prompt="none" 
   src="./Models/SheenChair/glTF-Binary/SheenChair.glb" 
   alt="A 3D model of an astronaut">
     <div class="controls" ,="" id="color-controls">
@@ -15,6 +15,7 @@
       <button data-color="0,1,0,1">Green</button>
       <button data-color="0,0,1,1">Blue</button>
     </div>
+    <button slot="ar-button" id="ar-button"> View in your space </button>
   </model-viewer>
   <script>
   const modelViewerColor = document.querySelector("model-viewer#color");

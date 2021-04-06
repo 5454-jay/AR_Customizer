@@ -9,20 +9,78 @@
 </head>
 
 <body>
-    <model-viewer id="chair" 
-    camera-controls src="./Models/SheenChair/glTF-Binary/SheenChair.glb" 
-    ar ar-modes="scene-viewer webxr" 
-    unstable-webxr ar-scale="auto" alt="A 3D model of a chair">
-        <div id="controls" class="dim">
-            <div>
-                <h2>Variant: <select id="variant"></select></h2>
-            </div>
-        </div>
-
-        <button slot="ar-button" id="ar-button"> View in your space </button>
-        <div id="error" class="hide"> AR is not supported on this device </div>
-    </model-viewer>
-
+    <model-viewer id="color" 
+  camera-controls 
+  ar 
+  unstable-webxr 
+  shadow-intensity="1" 
+  interaction-prompt="none"
+    src="./Models/table football_glbt.glb" 
+    ios-src="./Models/nissan_car.usdz" alt="A 3D model of an astronaut" >
+    <!-- <button >Reset </button> -->
+    <!-- <button onClick="window.location.href=window.location.href">Refresh Page</button> -->
+    <div onClick="window.location.reload();" id="reset-button" class="reset-button">
+      <button type="button" class="btn btn-success btn-circle btn-sm"> Reset </button>
+    </div>
+    <div id="controls" class="dim">
+      <div>Materials: <select id="materials"></select></div>
+    </div>
+    <div class="controls" ,="" id="color-controls">
+      <button type="button" class="btn btn-success btn-circle btn-sm" data-color="0,1,0,1">Green</button>
+      <button type="button" class="btn btn-primary btn-circle btn-sm" data-color="0,0,1,1">Blue</button>
+      <button type="button" class="btn btn-danger btn-circle btn-sm"  data-color="1,0,0,1">Red</button>
+      <button type="button" class="btn btn-warning btn-circle btn-sm" data-color="1,1,0,1">Yellow</button>
+      
+    </div>
+    <button slot="ar-button" id="ar-button"></button>
+    <div id="error" class="hide"> AR is not supported on this device </div>
+  </model-viewer>
+  <script type="module">
+  const modelViewerColor = document.querySelector("model-viewer#color");
+  const sel = document.querySelector('#materials');
+  var matnames=[];
+  var matcolor=[];
+  // var current = modelViewerColor.model.materials[index].pbrMetallicRoughness.baseColorFactor;
+  var index=0;
+  modelViewerColor.addEventListener('load', () => {
+            matnames = modelViewerColor.model.materials;
+            const colorString = event.target.dataset.color;
+            // console.log("materialsName :",matnames);
+            for (const obj of matnames) {
+              const option = document.createElement('option');
+              option.value = obj.name;
+              option.id =obj.name;
+              option.textContent = obj.name;
+              sel.appendChild(option);
+            }
+          });
+  
+          sel.addEventListener('input', (event) => {
+            // modelViewerColor.matName = event.target.value;
+            let value = event.target.value;
+            console.log(value);
+            index = event.target.selectedIndex;
+            // material = modelViewerColor.model.materials;
+            console.log(index);
+        });
+  
+                        // const modelViewerColor = document.querySelector("model-viewer#color");
+                        document.querySelector('#color-controls').addEventListener('click', (event) => {
+                          const colorString = event.target.dataset.color;
+                          const current = modelViewerColor.model.materials[index].pbrMetallicRoughness.baseColorFactor;
+                          
+                          // console.log("model color from ::",current)
+                          
+                          const color = colorString.split(',')
+                            .map(numberString => parseFloat(numberString));
+                          // change 
+                          console.log('Changing color to :: ', color);
+                          const material = modelViewerColor.model.materials[index];
+                          // console.log("matdem",modelViewerColor.model.matnames);
+                          //change done 
+                          material.pbrMetallicRoughness.setBaseColorFactor(color);
+                        });
+</script>
     <!-- <model-viewer
     id="model-viewer" 
     src="./SheenChair/glTF-Binary/SheenChair.glb"
@@ -37,7 +95,7 @@
     <div id="error" class="hide">AR is not supported on this device</div>
     </model-viewer> -->
 
-    <script>
+    <!-- <script>
         const modelViewerVariants = document.querySelector("model-viewer#chair");
         const select = document.querySelector('#variant');
 
@@ -54,7 +112,7 @@
         select.addEventListener('input', (event) => {
             modelViewerVariants.variantName = event.target.value;
         });
-    </script>
+    </script> -->
 
 
 </body>

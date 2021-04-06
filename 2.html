@@ -60,14 +60,26 @@
                                                     </model-viewer> -->
 
   <!-- color change in ar mode -->
-
+  <script>
+    // function reloadDIV () {$('#model-viewer#color').load(self)} 
+    // function reloadDIV () {document.getElementById("model-viewer#color").innerHTML.reload}
+    // <a onclick='reloadDIV ();'>reload div</a>
+  </script>
   <model-viewer id="color" 
   camera-controls 
-  ar ar-modes="webxr" 
+  ar camera-controls
   unstable-webxr 
   shadow-intensity="1" 
   interaction-prompt="none"
-    src="./Models/table football_glbt.glb" alt="A 3D model of an astronaut" >
+    src="./Models/nissan_car/scene.gltf" 
+    ios-src="./Models/nissan_car.usdz"
+    unstable-webxr 
+    alt="A 3D model of an astronaut" >
+    <!-- <button >Reset </button> -->
+    <!-- <button onClick="window.location.href=window.location.href">Refresh Page</button> -->
+    <div onClick="window.location.reload();" id="reset-button" class="reset-button">
+      <button type="button" class="btn btn-success btn-circle btn-sm"> Reset </button>
+    </div>
     <div id="controls" class="dim">
       <div>Materials: <select id="materials"></select></div>
     </div>
@@ -76,6 +88,7 @@
       <button type="button" class="btn btn-primary btn-circle btn-sm" data-color="0,0,1,1">Blue</button>
       <button type="button" class="btn btn-danger btn-circle btn-sm"  data-color="1,0,0,1">Red</button>
       <button type="button" class="btn btn-warning btn-circle btn-sm" data-color="1,1,0,1">Yellow</button>
+      
     </div>
     <button slot="ar-button" id="ar-button"> View in your space </button>
     <div id="error" class="hide"> AR is not supported on this device </div>
@@ -116,6 +129,8 @@
 const modelViewerColor = document.querySelector("model-viewer#color");
 const sel = document.querySelector('#materials');
 var matnames=[];
+var matcolor=[];
+// var current = modelViewerColor.model.materials[index].pbrMetallicRoughness.baseColorFactor;
 var index=0;
 modelViewerColor.addEventListener('load', () => {
           matnames = modelViewerColor.model.materials;
@@ -142,23 +157,61 @@ modelViewerColor.addEventListener('load', () => {
                       // const modelViewerColor = document.querySelector("model-viewer#color");
                       document.querySelector('#color-controls').addEventListener('click', (event) => {
                         const colorString = event.target.dataset.color;
-                      
+                        const current = modelViewerColor.model.materials[index].pbrMetallicRoughness.baseColorFactor;
+                        
+                        // console.log("model color from ::",current)
                         if (!colorString) {
                           return;
                         }
                         // change 
                         console.log("model ::",modelViewerColor.model.materials[index])
-                        //change done 
+                        
                         const color = colorString.split(',')
                           .map(numberString => parseFloat(numberString));
-                        
-                        console.log('Changing color to: ', color);
+                        // change 
+                        console.log('Changing color to :: ', color);
                         const material = modelViewerColor.model.materials[index];
                         // console.log("matdem",modelViewerColor.model.matnames);
+                        //change done 
                         material.pbrMetallicRoughness.setBaseColorFactor(color);
-                        
                       });
+                      
+                      document.querySelector('#reset-button').addEventListener('click', (event) => {
+                        // const colorString = event.target.dataset.color;
+                        // console.log("color string ::" , current);
+                        // if (!current) {
+                        //   return;
+                        // }
+                        // const color = current.split(',')
+                        //   .map(numberString => parseFloat(numberString));
 
+                        // const resetcolorString = modelViewerColor.model.materials[index].pbrMetallicRoughness.baseColorFactor;
+                        // console.log("string ::", resetcolorString);
+                        // matcolor = modelViewerColor.model.materials;
+                        // const colorString = event.target.dataset.color;
+                        // console.log("materialsName :",matcolor);
+                        // for (const obj of matcolor) {
+                        // const option = document.createElement('option');
+                        // option.value = obj.name;
+                        // option.id =obj.name;
+                        // option.textContent = obj.name;
+                        // sel.appendChild(option);
+                        // }
+                        // const a;
+                        // reduxStore.dispatch(dispatchMaterialBaseColor( getEditsMaterials(reduxStore.getState()), {index, baseColorFactor}));
+                        // const material = modelViewerColor.model.materials[index];
+                        // console.log("matdem",modelViewerColor.model.matnames);
+                        // material.pbrMetallicRoughness.setBaseColorFactor(color);
+                      })
+
+  // reset color change
+  // revertBaseColorFactor() {
+  //   const index = this.safeSelectedMaterialId;
+  //   const baseColorFactor = this.originalMaterials[index].baseColorFactor;
+  //   reduxStore.dispatch(dispatchMaterialBaseColor(
+  //       getEditsMaterials(reduxStore.getState()), {index, baseColorFactor}));
+  // }
+ 
   </script>
 </body>
 </html>
