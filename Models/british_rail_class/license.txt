@@ -1,0 +1,11 @@
+Model Information:
+* title:	British Rail Class 55 Swallow Livery
+* source:	https://sketchfab.com/3d-models/british-rail-class-55-swallow-livery-e2692b2cbd284b559ad8a1ba9c6227b5
+* author:	timblewee (https://sketchfab.com/timblewee)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "British Rail Class 55 Swallow Livery" (https://sketchfab.com/3d-models/british-rail-class-55-swallow-livery-e2692b2cbd284b559ad8a1ba9c6227b5) by timblewee (https://sketchfab.com/timblewee) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

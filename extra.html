@@ -22,7 +22,8 @@
 </head>
 
 <body>
-  <!-- model change on ar mode  -->
+  <!-- model change in ar mode  -->
+  <p>Model change in ar mode</p>
                                                         <model-viewer id="dimension-demo" 
                                                                           ar ar-modes="webxr" 
                                                                           ar-scale="fixed" 
@@ -30,21 +31,27 @@
                                                                           max-camera-orbit="auto 100deg auto" 
                                                                           shadow-intensity="1" 
                                                                           camera-controls 
-                                                                          src="./Models/SheenChair/glTF-Binary/SheenChair.glb" alt="A 3D model of an armchair.">
+                                                                          src="./Models/SheenChair/glTF-Binary/SheenChair.glb" 
+                                                                          ios-src=""
+                                                                          alt="A 3D model of an armchair.">
                                                                             <div id="controls" class="dim">
                                                                               <label for="src">Product:</label>
                                                                               <select id="src">
-                                                                                <option value="./SheenChair/glTF-Binary/SheenChair.glb">Sheen Chair</option>
-                                                                                <option value="./table football_glbt.glb">Football Table</option>
-                                                                                 <option value="../../assets/ShopifyModels/GeoPlanter.glb">Cactus</option> 
+                                                                                <option value="./Models/SheenChair/glTF-Binary/SheenChair.glb">Sheen Chair</option>
+                                                                                <option value="./Models/table football_glbt.glb">Football Table</option>
+                                                                                <option value="./Models/british_rail_class/scene.gltf">British Rail</option>
+                                                                                <option value="./Models/nissan_car/nissan_car.gltf">Nissan Car</option>
+                                                                                <option value="./Models/old_boiler/scene.gltf">Boiler</option>
+                                                                                <option value="./Models/sofa/scene.gltf">sofa</option>                                                  
                                                                               </select><br>
                                                                           
-                                                                              <label for="show-dimensions">Show Dimensions:</label>
-                                                                              <input id="show-dimensions" type="checkbox" checked="false">
+                                                                              <!-- <label for="show-dimensions">Show Dimensions:</label> -->
+                                                                              <!-- <input id="show-dimensions" type="checkbox" checked="false"> -->
                                                                             </div>
                                                           </model-viewer>
   <!--  -------------------------------------------------------------------------------------------------->
   <!-- varient change in ar mode -->
+  <p>Texture varient change in ar mode</p>
                                                   <model-viewer id="chair"
                                                             ar ar-modes="webxr" 
                                                             ar-scale="fixed" 
@@ -62,7 +69,7 @@
                                                     </model-viewer>
 
   <!-- color change in ar mode -->
-<p>hello</p>
+<p>color change in ar mode</p>
   <model-viewer id="color" 
   camera-controls 
   ar ar-modes="webxr" 
@@ -89,7 +96,9 @@
                                                 const modelViewer = document.querySelector('#dimension-demo');
                                               
                                                 modelViewer.querySelector('#src').addEventListener('input', (event) => {
-                                                  modelViewer.src = event.target.value;
+                                                  // modelViewer.src = event.target.value;
+                                                  modelViewer.setAttribute('src',event.target.value);
+                                                  modelViewer.setAttribute('ios-src',event.target.value);
                                                 });
 
 
